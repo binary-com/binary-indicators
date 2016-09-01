@@ -7,3 +7,4 @@ To-Do:
 * Bollinger Bands (BB)
 * Relative Strength Index (RSI)
 * Fibonacci 
+* Momentum
