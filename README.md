@@ -18,6 +18,31 @@ A simple moving average (SMA) is an arithmetic moving average calculated by addi
 * [What is the Simple Moving Average?](http://tradingsim.com/blog/simple-moving-average/)
 * [Moving Averages - Simple and Exponential](http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages)
 
+#### Calculate a single value, from array of numbers:
+
+Input array of numbers:
+```
+const data = [1, 10, 100, 1000, 10000];
+const result = simpleMovingAverageArray(data, { periods: 3 });
+```
+
+#### Calculate a single value from array of candles:
+```
+const data = [
+    { close: 1 },
+    { close: 2 },
+    { close: 3 },
+];
+const result = simpleMovingAverage(data, { periods: 3, field: 'close' });
+```
+
+#### Calculate an array of values from array of numbers:
+
+```
+const data = [1, 2, 3, ...];
+const result = simpleMovingAverageArray(data, { periods: 10 });
+```
+
 ## Exponential Moving Average (EMA)
 
 The 12- and 26-day EMAs are the most popular short-term averages, and they are used to create indicators like the moving average convergence divergence (MACD) and the percentage price oscillator (PPO). In general, the 50- and 200-day EMAs are used as signals of long-term trends.

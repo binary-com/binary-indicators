@@ -10,12 +10,16 @@ type ExponentialMovingAverageConfig = {
 export const weightingMultiplier = (periods: number): number =>
     (2 / (periods + 1));
 
-export default (data, config: ExponentialMovingAverageConfig) => {
+const EMA = (previousDay: number): number => 1;
+
+export default (data: Candle[], config: ExponentialMovingAverageConfig) => {
     const { periods } = config;
     const sma = simpleMovingAverage(data, config);
 
     const multiplier = weightingMultiplier(periods);
 
-    const prevEMA = EMA(previousDay);
-    const ema = close - prevEMA * multiplier + prevEMA;
+    // const prevEMA = EMA(previousDay);
+    // const ema = close - prevEMA * multiplier + prevEMA;
+
+    return 0;
 };

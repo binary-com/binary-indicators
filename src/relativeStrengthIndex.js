@@ -4,6 +4,6 @@ type RelativeStrengthIndexConfig = {
     levels: number[],
 };
 
-export default (data, config: RelativeStrengthIndexConfig) => {
+export default (data: Candle[], config: RelativeStrengthIndexConfig) => {
     // TODO
 };

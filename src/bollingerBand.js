@@ -6,6 +6,6 @@ type BollingerBandConfig = {
     stdDevDown: number
 };
 
-export default (data, config: BollingerBandConfig) => {
-    // TODO
+export default (data: Candle[], config: BollingerBandConfig): number => {
+    return 0;
 };
