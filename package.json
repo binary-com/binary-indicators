@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register ./src/__tests__/*.js -R progress",
-    "test:coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- ./src/*/__tests__/*.js",
+    "test:coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- ./src/__tests__/*.js",
     "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "test:eslint": "eslint src/**/*.js",
     "test:flow": "flow check --all --show-all-errors",
@@ -46,7 +46,8 @@
     "eslint-plugin-flowtype": "^2.11.4",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
-    "eslint-plugin-react": "^6.2.0"
+    "eslint-plugin-react": "^6.2.0",
+    "mocha": "^3.0.2"
   },
   "dependencies": {
     "binary-utils": "^4.12.4"
