@@ -1,18 +1,21 @@
+import simpleMovingAverage from './simpleMovingAverage';
+
+type CandleKeys = 'open' | 'high' | 'low' | 'close';
+
 type ExponentialMovingAverageConfig = {
     periods: number,
-    field: 'open' | 'high' | 'low' | 'close',
+    field: CandleKeys,
 };
 
 export const weightingMultiplier = (periods: number): number =>
     (2 / (periods + 1));
 
-export default (data, config) => {
-    // First, calculate the simple moving average.
-    // An exponential moving average (EMA) has to start somewhere so a simple moving
-    //  average is used as the previous period's EMA in the first calculation.
+export default (data, config: ExponentialMovingAverageConfig) => {
+    const { periods } = config;
+    const sma = simpleMovingAverage(data, config);
 
-    // Second, calculate the weighting multiplier.
+    const multiplier = weightingMultiplier(periods);
 
-    // Third, calculate the exponential moving average.
-    // The formula below is for a 10-day EMA.
+    const prevEMA = EMA(previousDay);
+    const ema = close - prevEMA * multiplier + prevEMA;
 };
