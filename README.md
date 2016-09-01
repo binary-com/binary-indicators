@@ -1,5 +1,14 @@
-# binary-indicators
-Binary.com Indicators
+#Binary.com Indicators
+
+[![Build Status](https://travis-ci.org/borisyankov/binary-indicators.svg?branch=master)](https://travis-ci.org/borisyankov/binary-indicators)
+[![Coverage Status](https://coveralls.io/repos/github/borisyankov/binary-indicators/badge.svg?branch=master)](https://coveralls.io/github/borisyankov/binary-indicators?branch=master)
+[![Code Climate](https://codeclimate.com/github/borisyankov/binary-indicators/badges/gpa.svg)](https://codeclimate.com/github/borisyankov/binary-indicators)
+
+## Install by running:
+
+```
+npm install binary-indicators --save
+```
 
 ## Simple Moving Average
 
