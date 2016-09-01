@@ -1,0 +1,57 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mocha": true
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "rules": {
+    "indent": [0, 4],
+    "camelcase": 0,
+    "no-mixed-operators": 0,
+    "object-property-newline": 0,
+    "max-len": [1, 150, 4],
+    "prefer-template": 0,
+    "no-confusing-arrow": 0,
+    "no-unused-expressions": 0,
+    "no-param-reassign": 0,
+    "react/jsx-indent": [0, "tab"],
+    "react/prefer-stateless-function": 0,
+    "react/jsx-indent-props": [0, "tab"],
+    "react/jsx-filename-extension": 0,
+    "no-unused-vars": 1,
+    "no-trailing-spaces": 1,
+    "import/named": 0,
+    "import/default": 0,
+    "import/namespace": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "flowtype/define-flow-type": 1,
+    # "flowtype/require-parameter-type": 1,
+    # "flowtype/require-return-type": [
+    #   1,
+    #   "always",
+    #   {
+    #     "annotateUndefined": "never"
+    #   }
+    # ],
+    "flowtype/space-after-type-colon": [
+      1,
+      "always"
+    ],
+    "flowtype/space-before-type-colon": [
+      1,
+      "never"
+    ],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  }
+}
