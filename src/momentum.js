@@ -1,5 +1,5 @@
 type MomentumConfig = {
-    period: number,
+    periods: number,
     field: 'open' | 'high' | 'low' | 'close',
 };
 

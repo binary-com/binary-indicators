@@ -1,5 +1,5 @@
 type BollingerBandConfig = {
-    period: number,
+    periods: number,
     field: 'open' | 'high' | 'low' | 'close',
     type: 'SMA' | 'WMA' | 'EMA' | 'TEMA' | 'TRIMA',
     stdDevUp: number,

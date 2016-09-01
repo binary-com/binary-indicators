@@ -1,5 +1,5 @@
 type RelativeStrengthIndexConfig = {
-    period: number,
+    periods: number,
     field: 'open' | 'high' | 'low' | 'close',
     levels: number[],
 };

@@ -1,14 +1,30 @@
 type SimpleMovingAverageConfig = {
-    period: number,
+    periods: number,
     field: 'open' | 'high' | 'low' | 'close',
 };
 
-export default (data: Candle[], config: SimpleMovingAverageConfig): number => {
-    const { period, field } = config;
+// const extractData = (data: Candle[], config: SimpleMovingAverageConfig): number[] =>
 
-    if (data.length < period) throw new Error("Can't calculate yet");
+const takeLast = (arr, n) =>
+    arr.slice(arr.length - n, arr.length);
 
-    // sum of last config.period / config
+const fieldMapper = (field: ?string) =>
+    field ? x => x[field] : x => x;
 
-    return data[field];
+const sum = (data: number): number =>
+    data.reduce((acc: number, x) => acc + x);
+
+const simpleMovingAverageSingle = (data: Candle[], config: SimpleMovingAverageConfig): number => {
+    const { periods, field } = config;
+
+    if (data.length < periods) {
+        throw new Error('Periods longer than data length');
+    }
+
+    const vals = takeLast(data, periods).map(fieldMapper(field));
+
+    return sum(vals) / periods;
 };
+
+export default (data: Candle[], config: SimpleMovingAverageConfig): number =>
+    simpleMovingAverageSingle(data, config, 123);
