@@ -1,14 +1,23 @@
 import { expect } from 'chai';
-import exponentialMovingAverage, { weightingMultiplier } from '../exponentialMovingAverage';
-
-describe('weightingMultiplier', () => {
-    it('can be calculated', () => {
-        expect(weightingMultiplier(10)).to.be.within(0.1818, 0.1819);
-        expect(weightingMultiplier(20)).to.be.within(0.0952, 0.0953);
-    });
-});
+import exponentialMovingAverage, { exponentialMovingAverageArray } from '../exponentialMovingAverage';
 
 describe('exponentialMovingAverage', () => {
+    it.skip('single value with periods of 1 equals the value', () => {
+        const result = exponentialMovingAverage([1], { periods: 1 });
+        expect(result).to.equal(1);
+    });
+
+    it.skip('wuut', () => {
+        const result = exponentialMovingAverageArray([1, 2], { periods: 2 });
+        expect(result).to.deep.equal([1, 1.667]);
+    });
+
+    it.skip('wuut2', () => {
+        const data = [1, 2, 3, 4, 5];
+        const result = exponentialMovingAverageArray(data, { periods: 3 });
+        expect(result).to.deep.equal([1, 1.5, 2.25, 3.125, 4.063]);
+    });
+
     it.skip('real world', () => {
         const data = [22.27, 22.19, 22.08, 22.17, 22.18, 22.13, 22.23, 22.43, 22.24, 22.29,
             22.15, 22.39, 22.38, 22.61, 23.36, 24.05, 23.75, 23.83, 23.95, 23.63, 23.82,

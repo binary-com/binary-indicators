@@ -7,9 +7,6 @@ type ExponentialMovingAverageConfig = {
     field: CandleKeys,
 };
 
-export const weightingMultiplier = (periods: number): number =>
-    (2 / (periods + 1));
-
 const EMA = (previousDay: number): number => 1;
 
 export default (data: Candle[], config: ExponentialMovingAverageConfig) => {
