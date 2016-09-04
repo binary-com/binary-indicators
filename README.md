@@ -99,6 +99,15 @@ const result = bollingerBandsArray(data, { periods: 10 });
 
 * [MACD @ Investopedia](http://www.investopedia.com/terms/m/macd.asp)
 
-## Stochastic Oscillator
+## Upcoming:
 
-## Fibonacci 
+* Stochastic Oscillator
+* Fibonacci 
+* WMA & SSMA
+* Fractal
+* Alligator
+* Parabolic SAR
+* Awesome Oscillator
+* Average True Range
+* Average Directional Movement Index
+* Commodity Channel Index

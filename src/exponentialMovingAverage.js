@@ -1,10 +1,11 @@
+import { weightingMultiplier } from './math';
 import simpleMovingAverage from './simpleMovingAverage';
 
 type CandleKeys = 'open' | 'high' | 'low' | 'close';
 
 type ExponentialMovingAverageConfig = {
     periods: number,
-    field: CandleKeys,
+    field?: CandleKeys,
 };
 
 const EMA = (previousDay: number): number => 1;

@@ -1,15 +1,12 @@
 import { sequence } from 'binary-utils';
+import { sum, takeLast } from './math';
+
+type CandleField = 'open' | 'high' | 'low' | 'close';
 
 type SimpleMovingAverageConfig = {
     periods: number,
-    field: 'open' | 'high' | 'low' | 'close',
+    field?: CandleField,
 };
-
-const takeLast = (arr, n) =>
-    arr.slice(arr.length - n, arr.length);
-
-const sum = (data: number[]): number =>
-    data.reduce((acc: number, x) => acc + x);
 
 const simpleMovingAverage = (data: Candle[], config: SimpleMovingAverageConfig): number => {
     const { periods, field } = config;
@@ -18,7 +15,7 @@ const simpleMovingAverage = (data: Candle[], config: SimpleMovingAverageConfig):
         throw new Error('Periods longer than data length');
     }
 
-    const vals = takeLast(data, periods).map((x: any) => field ? x[field] : x);
+    const vals = takeLast(data, periods, field);
 
     return sum(vals) / periods;
 };

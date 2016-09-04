@@ -1,26 +1,32 @@
 import { sequence } from 'binary-utils';
-import { stddev } from './math';
+import { stddev, takeLast } from './math';
 import simpleMovingAverage from './simpleMovingAverage';
+
+type CandleField = 'open' | 'high' | 'low' | 'close';
+type SmaType = 'SMA' | 'WMA' | 'EMA' | 'TEMA' | 'TRIMA';
 
 type BollingerBandConfig = {
     periods: number,
-    field: 'open' | 'high' | 'low' | 'close',
-    type: 'SMA' | 'WMA' | 'EMA' | 'TEMA' | 'TRIMA',
+    field?: CandleField,
+    type: SmaType,
     stdDevUp: number,
-    stdDevDown: number
+    stdDevDown: number,
 };
 
-const bollingerBands = (data: Candle[], config: BollingerBandConfig): number[] => {
+type BollingerBandEntry = number[];
+
+const bollingerBands = (data: Candle[], config: BollingerBandConfig): BollingerBandEntry => {
     const { periods = 20, field, stdDevUp = 2, stdDevDown = 2 } = config;
-    const middle = simpleMovingAverage(data, { periods, field });
-    const stdDev = stddev(data);
+    const vals = takeLast(data, periods, field);
+    const middle = simpleMovingAverage(vals, { periods });
+    const stdDev = stddev(vals);
     const upper = middle + stdDev * stdDevUp;
     const lower = middle - stdDev * stdDevDown;
 
     return [middle, upper, lower];
 };
 
-export const bollingerBandsArray = (data: Candle[], config: BollingerBandConfig): number[] => {
+export const bollingerBandsArray = (data: Candle[], config: BollingerBandConfig): BollingerBandEntry[] => {
     const { periods } = config;
     return sequence(data.length - periods + 1)
         .map((x, i) =>
