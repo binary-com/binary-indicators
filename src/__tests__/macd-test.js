@@ -1,21 +1,21 @@
 import { expect } from 'chai';
-import exponentialMovingAverage, { exponentialMovingAverageArray } from '../exponentialMovingAverage';
+import macd, { macdArray } from '../relativeStrengthIndex';
 
-describe('exponentialMovingAverage', () => {
+describe('macd', () => {
     it('single value with periods of 1 equals the value', () => {
-        const result = exponentialMovingAverage([1], { periods: 1 });
+        const result = macd([1], { periods: 1 });
         expect(result).to.equal(1);
     });
 
     it('whole data sample', () => {
-        const result = exponentialMovingAverage([1, 2, 3], { periods: 3 });
+        const result = macd([1, 2, 3], { periods: 3 });
         // const roundedResult = roundResult(result);
         expect(result).to.deep.equal(1);
     });
 
     it('wuut2', () => {
         const data = [1, 2, 3, 4, 5];
-        const result = exponentialMovingAverageArray(data, { periods: 3 });
+        const result = macd(data, { periods: 3 });
         expect(result).to.deep.equal([1, 1.5, 2.25, 3.125, 4.063]);
     });
 
@@ -25,7 +25,7 @@ describe('exponentialMovingAverage', () => {
             23.87, 23.65, 23.19, 23.10, 23.33, 22.68, 23.10, 22.40, 22.17];
         const ema10days = [22.22, 22.21, 22.24, 22.27, 22.33, 22.52, 22.80, 22.97, 23.13,
             23.28, 23.34, 23.43, 23.51, 23.54, 23.47, 23.40, 23.39, 23.26, 23.23, 23.08, 22.92];
-        const result = exponentialMovingAverage(data, { periods: 10 });
+        const result = macd(data, { periods: 10 });
         const roundedResult = result.map(x => Math.round(x * 100) / 100);
         expect(roundedResult).to.deep.equal(ema10days);
     });

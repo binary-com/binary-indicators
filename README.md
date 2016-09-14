@@ -89,25 +89,31 @@ const result = bollingerBandsArray(data, { periods: 10 });
 
 ## Relative Strength Index (RSI)
 
+Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements. RSI oscillates between zero and 100.
+
 * [RSI @ Investopedia](http://www.investopedia.com/terms/r/rsi.asp)
-
-## Momentum
-
-* [Momentum @ Investopedia](http://www.investopedia.com/terms/m/momentum.asp)
+* [RSI @ StockCharts](http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:relative_strength_index_rsi)
 
 ## Moving Average Convergence Divergence (MACD)
 
+Moving average convergence divergence (MACD) is a trend-following momentum indicator that shows the relationship between two moving averages of prices. The MACD is calculated by subtracting the 26-day exponential moving average (EMA) from the 12-day EMA. A nine-day EMA of the MACD, called the "signal line", is then plotted on top of the MACD, functioning as a trigger for buy and sell signals.
+
 * [MACD @ Investopedia](http://www.investopedia.com/terms/m/macd.asp)
 
-## Upcoming:
+## Momentum
 
-* Stochastic Oscillator
-* Fibonacci 
-* WMA & SSMA
-* Fractal
-* Alligator
-* Parabolic SAR
-* Awesome Oscillator
-* Average True Range
-* Average Directional Movement Index
-* Commodity Channel Index
+Momentum is the rate of acceleration of a security's price or volume. In technical analysis, momentum is considered an oscillator and is used to help identify trend lines.
+
+* [Momentum @ Investopedia](http://www.investopedia.com/terms/m/momentum.asp)
+
+## Alligator
+
+The Alligator indicator uses three smoothed moving averages, set at five, eight, and 13 periods, which are all Fibonacci numbers. The initial smoothed average is calculated with a simple moving average (SMA), adding additional smoothed averages that slow down indicator turns.
+
+* [Alligator @ Investopedia](http://www.investopedia.com/articles/trading/072115/exploring-williams-alligator-indicator.asp)
+
+## Stochastic Oscillator
+
+Momentum indicator comparing the closing price of a security to the range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result.
+
+* [Stochastic Oscillator @ Investopedia](http://www.investopedia.com/terms/s/stochasticoscillator.asp)
