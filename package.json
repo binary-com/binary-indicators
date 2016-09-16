@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/borisyankov/binary-indicators.git"
+    "url": "git+https://github.com/binary-com/binary-indicators.git"
   },
   "author": "",
   "babel": {
@@ -30,9 +30,9 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/borisyankov/binary-indicators/issues"
+    "url": "https://github.com/binary-com/binary-indicators/issues"
   },
-  "homepage": "https://github.com/borisyankov/binary-indicators#readme",
+  "homepage": "https://github.com/binary-com/binary-indicators#readme",
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-istanbul": "^0.11.0",

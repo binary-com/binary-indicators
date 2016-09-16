@@ -1,8 +1,8 @@
 #Binary.com Indicators
 
-[![Build Status](https://travis-ci.org/borisyankov/binary-indicators.svg?branch=master)](https://travis-ci.org/borisyankov/binary-indicators)
-[![Coverage Status](https://coveralls.io/repos/github/borisyankov/binary-indicators/badge.svg?branch=master)](https://coveralls.io/github/borisyankov/binary-indicators?branch=master)
-[![Code Climate](https://codeclimate.com/github/borisyankov/binary-indicators/badges/gpa.svg)](https://codeclimate.com/github/borisyankov/binary-indicators)
+[![Build Status](https://travis-ci.org/binary-com/binary-indicators.svg?branch=master)](https://travis-ci.org/binary-com/binary-indicators)
+[![Coverage Status](https://coveralls.io/repos/github/binary-com/binary-indicators/badge.svg?branch=master)](https://coveralls.io/github/binary-com/binary-indicators?branch=master)
+[![Code Climate](https://codeclimate.com/github/binary-com/binary-indicators/badges/gpa.svg)](https://codeclimate.com/github/binary-com/binary-indicators)
 
 ## Install by running:
 
