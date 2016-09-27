@@ -1,9 +1,11 @@
 {
   "name": "binary-indicators",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Binary.com Indicators",
   "main": "index.js",
   "scripts": {
+    "build": "gulp",
+    "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-core/register ./src/__tests__/*.js -R progress",
     "test:coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- ./src/__tests__/*.js",
     "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
@@ -50,6 +52,8 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "mocha": "^3.0.2"
   },
   "dependencies": {
