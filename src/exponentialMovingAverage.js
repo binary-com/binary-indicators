@@ -1,23 +1,37 @@
-import { weightingMultiplier } from './math';
-import simpleMovingAverage from './simpleMovingAverage';
+import { sequence } from 'binary-utils';
+import { sum, takeLast, weightingMultiplier } from './math';
 
-type CandleKeys = 'open' | 'high' | 'low' | 'close';
+type CandleField = 'open' | 'high' | 'low' | 'close';
 
 type ExponentialMovingAverageConfig = {
     periods: number,
-    field?: CandleKeys,
+    field?: CandleField,
 };
 
-const EMA = (previousDay: number): number => 1;
+const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAverageConfig): number => {
+    const { periods, field } = config;
 
-export default (data: Candle[], config: ExponentialMovingAverageConfig) => {
+    if (data.length < periods) {
+        throw new Error('Periods longer than data length');
+    }
+
+    const vals = takeLast(data, periods, field);
+
+    if (data.length === periods) {
+      return sum(vals) / periods;
+    }
+
+    const prev = exponentialMovingAverage(data.slice(0, data.length - 1), config);
+
+    return (vals.slice(-1)[0] - prev) * weightingMultiplier + prev;
+};
+
+export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConf): number[] => {
     const { periods } = config;
-    const sma = simpleMovingAverage(data, config);
-
-    const multiplier = weightingMultiplier(periods);
-
-    // const prevEMA = EMA(previousDay);
-    // const ema = close - prevEMA * multiplier + prevEMA;
-
-    return 0;
+    return sequence(data.length - periods + 1)
+        .map((x, i) =>
+            exponentialMovingAverage(data.slice(i, i + periods), config)
+        );
 };
+
+export default exponentialMovingAverage;
