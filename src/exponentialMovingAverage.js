@@ -1,11 +1,21 @@
 import { sequence } from 'binary-utils';
-import { sum, takeLast, weightingMultiplier } from './math';
+import { takeLast, weightingMultiplier } from './math';
 
 type CandleField = 'open' | 'high' | 'low' | 'close';
 
 type ExponentialMovingAverageConfig = {
     periods: number,
     field?: CandleField,
+};
+
+const ema = (vals: [], periods: number) => {
+    if (vals.length === 1) {
+      return vals[0];
+    }
+
+    const prev = ema(vals.slice(0, vals.length - 1), periods);
+
+    return (vals.slice(-1)[0] - prev) * weightingMultiplier(periods) + prev;
 };
 
 const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAverageConfig): number => {
@@ -17,16 +27,10 @@ const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAvera
 
     const vals = takeLast(data, periods, field);
 
-    if (data.length === periods) {
-      return sum(vals) / periods;
-    }
-
-    const prev = exponentialMovingAverage(data.slice(0, data.length - 1), config);
-
-    return (vals.slice(-1)[0] - prev) * weightingMultiplier + prev;
+    return ema(vals, periods);
 };
 
-export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConf): number[] => {
+export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConfig): number[] => {
     const { periods } = config;
     return sequence(data.length - periods + 1)
         .map((x, i) =>
