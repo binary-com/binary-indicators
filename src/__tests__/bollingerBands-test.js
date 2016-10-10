@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import bollingerBands, { bollingerBandsArray } from '../bollingerBands';
 
 const roundResult = (result: number[]): number[] => [
@@ -10,13 +9,13 @@ const roundResult = (result: number[]): number[] => [
 describe('bollingerBands', () => {
     it('single value with periods of 1 equals the value', () => {
         const result = bollingerBands([5], { periods: 1 });
-        expect(result).to.deep.equal([5, 5, 5]);
+        expect(result).toEqual([5, 5, 5]);
     });
 
     it('whole data sample', () => {
         const result = bollingerBands([1, 2, 3], { periods: 3 });
         const roundedResult = roundResult(result);
-        expect(roundedResult).to.deep.equal([2, 3.63, 0.37]);
+        expect(roundedResult).toEqual([2, 3.63, 0.37]);
     });
 
     it('can extract field', () => {
@@ -27,20 +26,20 @@ describe('bollingerBands', () => {
         ];
         const result = bollingerBands(data, { periods: 3, field: 'close' });
         const roundedResult = roundResult(result);
-        expect(roundedResult).to.deep.equal([2, 3.63, 0.37]);
+        expect(roundedResult).toEqual([2, 3.63, 0.37]);
     });
 
     it('fractions', () => {
         const data = [28.93, 28.48, 28.44, 28.91, 28.48];
         const result = bollingerBands(data, { periods: 5 });
         const roundedResult = roundResult(result);
-        expect(roundedResult).to.deep.equal([28.65, 29.09, 28.20]);
+        expect(roundedResult).toEqual([28.65, 29.09, 28.20]);
     });
 
     it('throws if periods is longer than data length', () => {
         expect(() =>
             bollingerBands([1, 2, 3], { periods: 5 })
-        ).to.throw();
+        ).toThrow();
     });
 
     it('array', () => {
@@ -52,7 +51,7 @@ describe('bollingerBands', () => {
         ];
         const result = bollingerBandsArray(data, { periods: 3 });
         const roundedResult = result.map(x => roundResult(x));
-        expect(roundedResult).to.deep.equal(expected);
+        expect(roundedResult).toEqual(expected);
     });
 
     it('real world', () => {
@@ -79,6 +78,6 @@ describe('bollingerBands', () => {
         const result = bollingerBandsArray(data, { periods: 20 });
         const roundedResult = result.map(x => roundResult(x));
 
-        expect(roundedResult).to.deep.equal(wholeBand);
+        expect(roundedResult).toEqual(wholeBand);
     });
 });

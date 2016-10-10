@@ -1,22 +1,21 @@
-import { expect } from 'chai';
 import macd, { macdArray } from '../relativeStrengthIndex';
 
 describe('macd', () => {
     it.skip('single value with periods of 1 equals the value', () => {
         const result = macd([1], { periods: 1 });
-        expect(result).to.equal(1);
+        expect(result).toEqual(1);
     });
 
     it.skip('whole data sample', () => {
         const result = macd([1, 2, 3], { periods: 3 });
         // const roundedResult = roundResult(result);
-        expect(result).to.deep.equal(1);
+        expect(result).toEqual(1);
     });
 
     it.skip('wuut2', () => {
         const data = [1, 2, 3, 4, 5];
         const result = macd(data, { periods: 3 });
-        expect(result).to.deep.equal([1, 1.5, 2.25, 3.125, 4.063]);
+        expect(result).toEqual([1, 1.5, 2.25, 3.125, 4.063]);
     });
 
     it.skip('real world', () => {
@@ -27,6 +26,6 @@ describe('macd', () => {
             23.28, 23.34, 23.43, 23.51, 23.54, 23.47, 23.40, 23.39, 23.26, 23.23, 23.08, 22.92];
         const result = macdArray(data, { periods: 10 });
         const roundedResult = result.map(x => Math.round(x * 100) / 100);
-        expect(roundedResult).to.deep.equal(ema10days);
+        expect(roundedResult).toEqual(ema10days);
     });
 });

@@ -12,13 +12,11 @@ module.exports = wallaby => ({
     env: {
         type: 'node',
     },
-    testFramework: 'mocha',
+    testFramework: 'jest',
     compilers: {
         '**/*.js': wallaby.compilers.babel({
             presets: [
-                'es2015',
-                'es2016',
-                'es2017',
+                'latest',
             ],
         }),
     },

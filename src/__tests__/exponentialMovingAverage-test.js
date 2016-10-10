@@ -1,22 +1,21 @@
-import { expect } from 'chai';
 import exponentialMovingAverage, { exponentialMovingAverageArray } from '../exponentialMovingAverage';
 
 describe('exponentialMovingAverage', () => {
     it('single value with periods of 1 equals the value', () => {
         const result = exponentialMovingAverage([1], { periods: 1 });
-        expect(result).to.equal(1);
+        expect(result).toEqual(1);
     });
 
     it('whole data sample', () => {
         const result = exponentialMovingAverage([1, 2, 3], { periods: 3 });
         // const roundedResult = roundResult(result);
-        expect(result).to.deep.equal(2.25);
+        expect(result).toEqual(2.25);
     });
 
     it('wuut2', () => {
         const data = [1, 2, 3, 4, 5];
         const result = exponentialMovingAverageArray(data, { periods: 3 });
-        expect(result).to.deep.equal([2.25, 3.25, 4.25]);
+        expect(result).toEqual([2.25, 3.25, 4.25]);
     });
 
     it('real world', () => {
@@ -28,6 +27,6 @@ describe('exponentialMovingAverage', () => {
             23.61, 23.52, 23.38, 23.34, 23.13, 22.98];
         const result = exponentialMovingAverageArray(data, { periods: 10 });
         const roundedResult = result.map(x => Math.round(x * 100) / 100);
-        expect(roundedResult).to.deep.equal(ema10days);
+        expect(roundedResult).toEqual(ema10days);
     });
 });
