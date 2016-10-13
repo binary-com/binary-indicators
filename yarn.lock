@@ -735,8 +735,8 @@ babel-types@^6.10.2, babel-types@^6.14.0, babel-types@^6.15.0, babel-types@^6.16
     to-fast-properties "^1.0.1"
 
 babylon@^6.11.0, babylon@^6.11.2, babylon@^6.8.1:
-  version "6.11.5"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.11.5.tgz#35cce8fb5f98353931d275cb56871fbf17bf9a00"
+  version "6.11.6"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.11.6.tgz#56dc52e624882841c7fe095257fbcb4a5bb61ae1"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -772,8 +772,8 @@ binary-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.7.0.tgz#6c1610db163abfb34edfe42fa423343a1e01185d"
 
 binary-utils@^4.19.1:
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/binary-utils/-/binary-utils-4.20.0.tgz#933706c4c0596ad348939a6f1b065a195942b5c2"
+  version "4.21.0"
+  resolved "https://registry.yarnpkg.com/binary-utils/-/binary-utils-4.21.0.tgz#9f679889296e177cb685b60c5ba3e9892dd1c4f9"
 
 bl@~1.1.2:
   version "1.1.2"
@@ -1523,8 +1523,8 @@ find-versions@^1.0.0:
     semver-regex "^1.0.0"
 
 findup-sync@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-0.4.2.tgz#a8117d0f73124f5a4546839579fe52d7129fb5e5"
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-0.4.3.tgz#40043929e7bc60adf0b7f4827c4c6e75a0deca12"
   dependencies:
     detect-file "^0.1.0"
     is-glob "^2.0.1"
@@ -1969,8 +1969,8 @@ indent-string@^2.1.0:
     repeating "^2.0.0"
 
 inflight@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.5.tgz#db3204cd5a9de2e6cd890b85c6e2f66bcf4f620a"
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
   dependencies:
     once "^1.3.0"
     wrappy "1"
