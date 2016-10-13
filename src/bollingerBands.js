@@ -11,6 +11,7 @@ type BollingerBandConfig = {
     type: SmaType,
     stdDevUp: number,
     stdDevDown: number,
+    pipSize: number,
 };
 
 type BollingerBandEntry = number[];
