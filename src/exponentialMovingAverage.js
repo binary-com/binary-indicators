@@ -6,6 +6,7 @@ type CandleField = 'open' | 'high' | 'low' | 'close';
 type ExponentialMovingAverageConfig = {
     periods: number,
     field?: CandleField,
+    pipSize?: number,
 };
 
 const ema = (vals: [], periods: number) => {
@@ -31,10 +32,10 @@ const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAvera
 };
 
 export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConfig): number[] => {
-    const { periods } = config;
+    const { periods, pipSize = 2 } = config;
     return sequence(data.length - periods + 1)
         .map((x, i) =>
-            exponentialMovingAverage(data.slice(i, i + periods), config)
+            +(exponentialMovingAverage(data.slice(i, i + periods), config).toFixed(pipSize))
         );
 };
 
