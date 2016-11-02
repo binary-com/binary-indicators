@@ -6,6 +6,7 @@ type CandleField = 'open' | 'high' | 'low' | 'close';
 type SimpleMovingAverageConfig = {
     periods: number,
     field?: CandleField,
+    pipSize?: number,
 };
 
 const simpleMovingAverage = (data: Candle[], config: SimpleMovingAverageConfig): number => {
@@ -21,10 +22,10 @@ const simpleMovingAverage = (data: Candle[], config: SimpleMovingAverageConfig):
 };
 
 export const simpleMovingAverageArray = (data: Candle[], config: SimpleMovingAverageConfig): number[] => {
-    const { periods } = config;
+    const { periods, pipSize = 2 } = config;
     return sequence(data.length - periods + 1)
         .map((x, i) =>
-            simpleMovingAverage(data.slice(i, i + periods), config)
+            +(simpleMovingAverage(data.slice(i, i + periods), config).toFixed(pipSize))
         );
 };
 

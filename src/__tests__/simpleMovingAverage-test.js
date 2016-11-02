@@ -1,37 +1,36 @@
-import { expect } from 'chai';
 import simpleMovingAverage, { simpleMovingAverageArray } from '../simpleMovingAverage';
 
 describe('simpleMovingAverage', () => {
     it('single value with periods of 1 equals the value', () => {
         const result = simpleMovingAverage([1], { periods: 1 });
-        expect(result).to.equal(1);
+        expect(result).toEqual(1);
     });
 
     it('whole data sample', () => {
         const result = simpleMovingAverage([1, 2, 3], { periods: 3 });
-        expect(result).to.equal(2);
+        expect(result).toEqual(2);
     });
 
     it('fractions', () => {
         const data = [28.93, 28.48, 28.44, 28.91, 28.48];
         const result = simpleMovingAverage(data, { periods: 5 });
-        expect(result).to.be.within(28.64, 28.65);
+        expect(result).toBeCloseTo(28.65);
     });
 
     it('throws if periods is longer than data length', () => {
         expect(() =>
             simpleMovingAverage([1, 2, 3], { periods: 5 })
-        ).to.throw();
+        ).toThrow();
     });
 
     it('part of whole', () => {
         const result = simpleMovingAverage([1, 2, 3, 4, 5], { periods: 3 });
-        expect(result).to.deep.equal(4);
+        expect(result).toEqual(4);
     });
 
     it.skip('longer stuff', () => {
         const result = simpleMovingAverage([11, 12, 13, 14, 15, 16, 17], { periods: 5 });
-        expect(result).to.deep.equal([13, 14, 15]);
+        expect(result).toEqual([13, 14, 15]);
     });
 
     it('can extract field', () => {
@@ -41,13 +40,13 @@ describe('simpleMovingAverage', () => {
             { close: 3 },
         ];
         const result = simpleMovingAverage(data, { periods: 3, field: 'close' });
-        expect(result).to.equal(2);
+        expect(result).toEqual(2);
     });
 
     it('complicated', () => {
         const data = [1, 10, 100, 1000, 10000];
         const result = simpleMovingAverageArray(data, { periods: 3 });
-        expect(result).to.deep.equal([37, 370, 3700]);
+        expect(result).toEqual([37, 370, 3700]);
     });
 
     it('real world', () => {
@@ -55,9 +54,9 @@ describe('simpleMovingAverage', () => {
             22.15, 22.39, 22.38, 22.61, 23.36, 24.05, 23.75, 23.83, 23.95, 23.63, 23.82,
             23.87, 23.65, 23.19, 23.10, 23.33, 22.68, 23.10, 22.40, 22.17];
         const sma10days = [22.22, 22.21, 22.23, 22.26, 22.30, 22.42, 22.61, 22.77, 22.91,
-            23.08, 23.21, 23.38, 23.53, 23.65, 23.71, 23.68, 23.61, 23.51, 23.43, 23.28, 23.13];
+            23.08, 23.21, 23.38, 23.52, 23.65, 23.71, 23.68, 23.61, 23.51, 23.43, 23.28, 23.13];
         const result = simpleMovingAverageArray(data, { periods: 10 });
         const roundedResult = result.map(x => Math.round(x * 100) / 100);
-        expect(roundedResult).to.deep.equal(sma10days);
+        expect(roundedResult).toEqual(sma10days);
     });
 });
