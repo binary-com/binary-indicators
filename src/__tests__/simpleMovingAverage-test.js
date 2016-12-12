@@ -19,7 +19,7 @@ describe('simpleMovingAverage', () => {
 
     it('throws if periods is longer than data length', () => {
         expect(() =>
-            simpleMovingAverage([1, 2, 3], { periods: 5 })
+            simpleMovingAverage([1, 2, 3], { periods: 5 }),
         ).toThrow();
     });
 

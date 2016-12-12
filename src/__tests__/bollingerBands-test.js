@@ -38,7 +38,7 @@ describe('bollingerBands', () => {
 
     it('throws if periods is longer than data length', () => {
         expect(() =>
-            bollingerBands([1, 2, 3], { periods: 5 })
+            bollingerBands([1, 2, 3], { periods: 5 }),
         ).toThrow();
     });
 
