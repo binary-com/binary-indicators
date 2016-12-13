@@ -24,7 +24,6 @@ const calcFirstAvgDiff = (vals, comp, periods) => {
     }) / periods;
 };
 
-
 const calcSecondAvgDiff = (vals, comp, periods, initAvg) => {
     let prev;
     if (vals.length === 1) { // There is no data to calc avg
@@ -41,7 +40,7 @@ const calcSecondAvgDiff = (vals, comp, periods, initAvg) => {
     });
 };
 
-const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConfig): number => {
+const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConfig, memoizedDiff: any = null): number => {
     const { periods, field } = config;
 
     if (data.length < periods) {
@@ -53,14 +52,31 @@ const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConf
     }
 
     const vals = takeField(data.slice(0, periods + 1), field);
-    // include last element from above to calc diff
-    const restSeq = takeField(data.slice(periods, data.length), field);
 
-    const initAvgGain = calcFirstAvgDiff(vals, calcGain, periods);
-    const initAvgLoss = calcFirstAvgDiff(vals, calcLoss, periods);
+    let restSeq;
+    let initAvgGain;
+    let initAvgLoss;
+
+    if (memoizedDiff && 'gain' in memoizedDiff) {
+        restSeq = takeField(data.slice(-2), field);
+
+        initAvgGain = memoizedDiff.gain;
+        initAvgLoss = memoizedDiff.loss;
+    } else {
+        // include last element from above to calc diff
+        restSeq = takeField(data.slice(periods, data.length), field);
+
+        initAvgGain = calcFirstAvgDiff(vals, calcGain, periods);
+        initAvgLoss = calcFirstAvgDiff(vals, calcLoss, periods);
+    }
 
     const avgGain = calcSecondAvgDiff(restSeq, calcGain, periods, initAvgGain);
     const avgLoss = calcSecondAvgDiff(restSeq, calcLoss, periods, initAvgLoss);
+
+    if (memoizedDiff) {
+        memoizedDiff.gain = avgGain;
+        memoizedDiff.loss = avgLoss;
+    }
 
     if (avgGain === 0) {
         return 0;
@@ -75,9 +91,10 @@ const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConf
 
 export const relativeStrengthIndexArray = (data: Candle[], config: RelativeStrengthIndexConfig): number[] => {
     const { periods, pipSize = 2 } = config;
+    const memoizedDiff = {};
     return sequence(data.length - periods)
         .map((x, i) =>
-        +(relativeStrengthIndex(data.slice(0, i + periods + 1), config).toFixed(pipSize))
+        +(relativeStrengthIndex(data.slice(0, i + periods + 1), config, memoizedDiff).toFixed(pipSize))
         );
 };
 
