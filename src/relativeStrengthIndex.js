@@ -13,32 +13,32 @@ const calcGain = (q1, q2) => q2 > q1 ? q2 - q1 : 0;
 const calcLoss = (q1, q2) => q2 < q1 ? q1 - q2 : 0;
 
 const calcFirstAvgDiff = (vals, comp, periods) => {
-  let prev;
-  return vals.reduce((r, q, i) => {
-    if (i === 1) {
-      prev = r;
-    }
-    const diff = comp(prev, q);
-    prev = q;
-    return diff + (i === 1 ? 0 : r);
-  }) / periods;
+    let prev;
+    return vals.reduce((r, q, i) => {
+        if (i === 1) {
+            prev = r;
+        }
+        const diff = comp(prev, q);
+        prev = q;
+        return diff + (i === 1 ? 0 : r);
+    }) / periods;
 };
 
 
 const calcSecondAvgDiff = (vals, comp, periods, initAvg) => {
-  let prev;
-  if (vals.length === 1) { // There is no data to calc avg
-    return initAvg;
-  }
-  return vals.reduce((r, q, i) => {
-    if (i === 1) {
-      prev = r;
+    let prev;
+    if (vals.length === 1) { // There is no data to calc avg
+        return initAvg;
     }
-    const diff = comp(prev, q);
-    prev = q;
-    const prevAvg = i === 1 ? initAvg : r;
-    return ((prevAvg * (periods - 1)) + diff) / periods;
-  });
+    return vals.reduce((r, q, i) => {
+        if (i === 1) {
+            prev = r;
+        }
+        const diff = comp(prev, q);
+        prev = q;
+        const prevAvg = i === 1 ? initAvg : r;
+        return ((prevAvg * (periods - 1)) + diff) / periods;
+    });
 };
 
 const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConfig): number => {
@@ -63,9 +63,9 @@ const relativeStrengthIndex = (data: Candle[], config: RelativeStrengthIndexConf
     const avgLoss = calcSecondAvgDiff(restSeq, calcLoss, periods, initAvgLoss);
 
     if (avgGain === 0) {
-      return 0;
+        return 0;
     } else if (avgLoss === 0) {
-      return 100;
+        return 100;
     }
 
     const RS = avgGain / avgLoss;
@@ -77,7 +77,7 @@ export const relativeStrengthIndexArray = (data: Candle[], config: RelativeStren
     const { periods, pipSize = 2 } = config;
     return sequence(data.length - periods)
         .map((x, i) =>
-            +(relativeStrengthIndex(data.slice(0, i + periods + 1), config).toFixed(pipSize))
+        +(relativeStrengthIndex(data.slice(0, i + periods + 1), config).toFixed(pipSize))
         );
 };
 
