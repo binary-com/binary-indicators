@@ -1,31 +1,32 @@
 import relativeStrengthIndex, { relativeStrengthIndexArray } from '../relativeStrengthIndex';
 
 describe('relativeStrengthIndex', () => {
-    it.skip('single value with periods of 1 equals the value', () => {
-        const result = relativeStrengthIndex([1], { periods: 1 });
-        expect(result).toEqual(1);
+    it('data length equal to periods is equal to 0', () => {
+        const result = relativeStrengthIndex([4, 5, 1], { periods: 3 });
+        expect(result).toEqual(0);
     });
 
-    it.skip('whole data sample', () => {
-        const result = relativeStrengthIndex([1, 2, 3], { periods: 3 });
-        // const roundedResult = roundResult(result);
-        expect(result).toEqual(1);
+    it('ascending data (all wins) is equal to 0', () => {
+        const result = relativeStrengthIndex([1, 3, 3.5, 4, 6.7, 8], { periods: 3 });
+        expect(result).toEqual(100);
     });
 
-    it.skip('wuut2', () => {
-        const data = [1, 2, 3, 4, 5];
-        const result = relativeStrengthIndex(data, { periods: 3 });
-        expect(result).toEqual([1, 1.5, 2.25, 3.125, 4.063]);
+    it('descending data (all losses) is equal to 100', () => {
+        const result = relativeStrengthIndex([10, 8.8, 4.3, 3.11, 3.1, 3], { periods: 3 });
+        expect(result).toEqual(0);
     });
 
-    it.skip('real world', () => {
-        const data = [22.27, 22.19, 22.08, 22.17, 22.18, 22.13, 22.23, 22.43, 22.24, 22.29,
-            22.15, 22.39, 22.38, 22.61, 23.36, 24.05, 23.75, 23.83, 23.95, 23.63, 23.82,
-            23.87, 23.65, 23.19, 23.10, 23.33, 22.68, 23.10, 22.40, 22.17];
-        const ema10days = [22.22, 22.21, 22.24, 22.27, 22.33, 22.52, 22.80, 22.97, 23.13,
-            23.28, 23.34, 23.43, 23.51, 23.54, 23.47, 23.40, 23.39, 23.26, 23.23, 23.08, 22.92];
-        const result = relativeStrengthIndexArray(data, { periods: 10 });
-        const roundedResult = result.map(x => Math.round(x * 100) / 100);
-        expect(roundedResult).toEqual(ema10days);
+    it('real world', () => {
+        const data = [
+            44.34, 44.09, 44.15, 43.61, 44.33, 44.83, 45.10, 45.42,
+            45.84, 46.08, 45.89, 46.03, 45.61, 46.28, 46.28, 46.00, 46.03, 46.41,
+            46.22, 45.64, 46.21, 46.25, 45.71, 46.45, 45.78, 45.35, 44.03, 44.18,
+            44.22, 44.57, 43.42, 42.66, 43.13,
+        ];
+        const result = relativeStrengthIndexArray(data, { periods: 14 });
+        expect(result).toEqual([
+            70.46, 66.25, 66.48, 69.35, 66.29, 57.92, 62.88, 63.21, 56.01, 62.34,
+            54.67, 50.39, 40.02, 41.49, 41.9, 45.5, 37.32, 33.09, 37.79,
+        ]);
     });
 });
