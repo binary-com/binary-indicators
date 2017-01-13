@@ -8,9 +8,6 @@ export const takeLast = (arr: any[], n: number, field?: string): any[] =>
 export const sum = (data: number[]): number =>
     data.reduce((acc: number, x) => acc + x);
 
-export const weightingMultiplier = (periods: number): number =>
-    (2 / (periods + 1));
-
 export const mean = (data: number[]): number =>
     data.reduce((a, b) => a + b) / data.length;
 

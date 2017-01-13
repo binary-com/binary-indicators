@@ -1,5 +1,4 @@
-import { sequence } from 'binary-utils';
-import { takeLast, weightingMultiplier } from './math';
+import { takeField, mean } from './math';
 
 type CandleField = 'open' | 'high' | 'low' | 'close';
 
@@ -9,14 +8,11 @@ type ExponentialMovingAverageConfig = {
     pipSize?: number,
 };
 
-const ema = (vals: [], periods: number) => {
-    if (vals.length === 1) {
-      return vals[0];
-    }
-
-    const prev = ema(vals.slice(0, vals.length - 1), periods);
-
-    return (vals.slice(-1)[0] - prev) * weightingMultiplier(periods) + prev;
+const ema = (vals: [], periods: number, m) => {
+    const weightingMultiplier = (2 / (periods + 1));
+    return vals.length === 1 ?
+        (vals[0] - m) * weightingMultiplier + m :
+        vals.reduce((prev, e) => (e - prev) * weightingMultiplier + prev, m);
 };
 
 const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAverageConfig): number => {
@@ -26,17 +22,20 @@ const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAvera
         throw new Error('Periods longer than data length');
     }
 
-    const vals = takeLast(data, periods, field);
+    const vals = takeField(data.slice(periods), field);
 
-    return ema(vals, periods);
+    const initVal = mean(takeField(data.slice(0, periods), field));
+
+    return ema(vals, periods, initVal);
 };
 
 export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConfig): number[] => {
     const { periods, pipSize = 2 } = config;
-    return sequence(data.length - periods + 1)
-        .map((x, i) =>
-            +(exponentialMovingAverage(data.slice(i, i + periods), config).toFixed(pipSize))
-        );
+    let initVal = +(exponentialMovingAverage(data.slice(0, periods), config).toFixed(pipSize));
+    return data.slice(periods - 1).map((x, i) =>
+        !i ? initVal :
+        +((initVal = ema([x], periods, initVal)).toFixed(pipSize))
+    );
 };
 
 export default exponentialMovingAverage;
