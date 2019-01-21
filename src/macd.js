@@ -6,7 +6,7 @@ type CandleField = 'open' | 'high' | 'low' | 'close';
 type MacdConfig = {
     fastEmaPeriod: number,
     slowEmaPeriod: number,
-    signalSmaPeriod: number,
+    signalEmaPeriod: number,
     field?: CandleField,
     pipSize: number,
 };
@@ -22,7 +22,7 @@ const paddingLeft = (data: any[], length: number): any[] => {
 
 const macdArray = (data: Candle[], config: MacdConfig): MacdEntry[] => {
     const { field, fastEmaPeriod = 12, slowEmaPeriod = 26,
-        signalSmaPeriod = 9, pipSize = 2 } = config;
+        signalEmaPeriod = 9, pipSize = 2 } = config;
 
     const vals = takeField(data, field);
 
@@ -51,13 +51,13 @@ const macdArray = (data: Candle[], config: MacdConfig): MacdEntry[] => {
     const signalEmaArray = paddingLeft(
         exponentialMovingAverageArray(
             macdCalcArray.slice(slowEmaPeriod - 1),
-            { periods: signalSmaPeriod, pipSize: 20, field }
+            { periods: signalEmaPeriod, pipSize: 20, field }
         )
         , length);
 
     return macdCalcArray.map((x, i) =>
         [+(x - signalEmaArray[i]).toFixed(pipSize), x, signalEmaArray[i]])
-        .slice(slowEmaPeriod + signalSmaPeriod - 2)
+        .slice(slowEmaPeriod + signalEmaPeriod - 2)
     ;
 };
 
