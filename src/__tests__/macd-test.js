@@ -5,7 +5,7 @@ describe('macd', () => {
     it('real world', () => {
         const result = macdArray(
             data,
-            { fastEmaPeriod: 12, slowEmaPeriod: 26, signalSmaPeriod: 9 }
+            { fastEmaPeriod: 12, slowEmaPeriod: 26, signalSmaPeriod: 9 },
         ).slice(-100);
         const expectedHistogram = histogram.slice(-100);
         const expectedMacd = macd.slice(-100);
