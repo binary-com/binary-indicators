@@ -53,7 +53,7 @@ const macdArray = (data: Candle[], config: MacdConfig): MacdEntry[] => {
             macdCalcArray.slice(slowEmaPeriod - 1),
             { periods: signalSmaPeriod, pipSize: 20, field }
         )
-    , length);
+        , length);
 
     return macdCalcArray.map((x, i) =>
         [+(x - signalEmaArray[i]).toFixed(pipSize), x, signalEmaArray[i]])
