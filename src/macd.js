@@ -1,5 +1,4 @@
 import { takeField } from './math';
-import { simpleMovingAverageArray } from './simpleMovingAverage';
 import { exponentialMovingAverageArray } from './exponentialMovingAverage';
 
 type CandleField = 'open' | 'high' | 'low' | 'close';
@@ -49,15 +48,15 @@ const macdArray = (data: Candle[], config: MacdConfig): MacdEntry[] => {
         )
         , length);
 
-    const smaArray = paddingLeft(
-        simpleMovingAverageArray(
+    const signalEmaArray = paddingLeft(
+        exponentialMovingAverageArray(
             macdCalcArray.slice(slowEmaPeriod - 1),
-            { periods: signalSmaPeriod, pipSize }
+            { periods: signalSmaPeriod, pipSize: 20, field }
         )
-        , length);
+    , length);
 
     return macdCalcArray.map((x, i) =>
-        [+(x - smaArray[i]).toFixed(pipSize), x, smaArray[i]])
+        [+(x - signalEmaArray[i]).toFixed(pipSize), x, signalEmaArray[i]])
         .slice(slowEmaPeriod + signalSmaPeriod - 2)
     ;
 };
