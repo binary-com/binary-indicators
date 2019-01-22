@@ -1,5 +1,5 @@
 {
-  "name": "binary-indicators",
+  "name": "@binary-com/binary-indicators",
   "version": "1.5.3",
   "description": "Binary.com Indicators",
   "main": "index.js",
