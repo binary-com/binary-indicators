@@ -1,4 +1,4 @@
-import { mean, stddev, sum, takeLast, weightingMultiplier } from '../math';
+import { mean, stddev, sum, takeLast } from '../math';
 
 describe('math', () => {
     it('mean', () => {
@@ -29,8 +29,7 @@ describe('math', () => {
         expect(takeLast([{ close: 123 }], 1, 'close')).toEqual([123]);
     });
 
-    it('weightingMultiplier', () => {
-        expect(weightingMultiplier(10)).toBeCloseTo(0.1818);
-        expect(weightingMultiplier(20)).toBeCloseTo(0.0952);
+    it('takeField', () => {
+        expect(takeLast([{ close: 123 }, { close: 321 }], 2, 'close')).toEqual([123, 321]);
     });
 });

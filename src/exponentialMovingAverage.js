@@ -1,5 +1,4 @@
-import { sequence } from 'binary-utils';
-import { takeLast, weightingMultiplier } from './math';
+import { takeField, mean } from './math';
 
 type CandleField = 'open' | 'high' | 'low' | 'close';
 
@@ -9,34 +8,36 @@ type ExponentialMovingAverageConfig = {
     pipSize?: number,
 };
 
-const ema = (vals: [], periods: number) => {
-    if (vals.length === 1) {
-      return vals[0];
+const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAverageConfig, initVal: number = 0): number => {
+    const { periods, field, pipSize = 2 } = config;
+
+    const weightingMultiplier = (2 / (periods + 1));
+
+    const vals = takeField(data, field);
+
+    if (initVal) {
+        return ((vals[0] - initVal) * weightingMultiplier + initVal);
     }
-
-    const prev = ema(vals.slice(0, vals.length - 1), periods);
-
-    return (vals.slice(-1)[0] - prev) * weightingMultiplier(periods) + prev;
-};
-
-const exponentialMovingAverage = (data: Candle[], config: ExponentialMovingAverageConfig): number => {
-    const { periods, field } = config;
 
     if (data.length < periods) {
         throw new Error('Periods longer than data length');
     }
 
-    const vals = takeLast(data, periods, field);
+    const meanVal = mean(takeField(data.slice(0, periods), field));
 
-    return ema(vals, periods);
+    return +(vals.slice(periods)
+        .reduce((prev, e) => (e - prev) * weightingMultiplier + prev, meanVal)).toFixed(pipSize);
 };
 
 export const exponentialMovingAverageArray = (data: Candle[], config: ExponentialMovingAverageConfig): number[] => {
-    const { periods, pipSize = 2 } = config;
-    return sequence(data.length - periods + 1)
-        .map((x, i) =>
-            +(exponentialMovingAverage(data.slice(i, i + periods), config).toFixed(pipSize))
-        );
+    const { periods } = config;
+
+    let initVal = exponentialMovingAverage(data.slice(0, periods), config);
+
+    return data.slice(periods - 1).map((x, i) =>
+        !i ? initVal :
+        (initVal = exponentialMovingAverage([x], config, initVal))
+    );
 };
 
 export default exponentialMovingAverage;
