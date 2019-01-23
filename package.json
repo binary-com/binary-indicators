@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/binary-indicators",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Binary.com Indicators",
   "main": "index.js",
   "scripts": {
@@ -39,16 +39,16 @@
     "babel-eslint": "^7.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.14.0",
     "babel-preset-latest": "^6.16.0",
-    "coveralls": "^2.11.14",
+    "coveralls": "^3.0.2",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-flowtype": "^2.20.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^6.1.2",
-    "jest-cli": "^17.0.3"
+    "jest-cli": "^23.6.0"
   },
   "dependencies": {
     "binary-utils": "^4.19.1"
