@@ -1,4 +1,4 @@
-#Binary.com Indicators
+# Binary.com Indicators
 
 [![Build Status](https://travis-ci.org/binary-com/binary-indicators.svg?branch=master)](https://travis-ci.org/binary-com/binary-indicators)
 [![Coverage Status](https://coveralls.io/repos/github/binary-com/binary-indicators/badge.svg?branch=master)](https://coveralls.io/github/binary-com/binary-indicators?branch=master)
