@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/binary-indicators",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Binary.com Indicators",
   "main": "index.js",
   "scripts": {
@@ -54,8 +54,5 @@
   "dependencies": {
     "binary-utils": "^4.19.1",
     "mem": "6.1.0"
-  },
-  "resolutions": {
-    "acorn": "5.7.4"
   }
 }
