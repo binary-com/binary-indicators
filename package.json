@@ -21,11 +21,11 @@
   "author": "",
   "babel": {
     "presets": [
-      "latest"
+      "@babel/preset-env"
     ],
     "sourceMaps": true,
     "plugins": [
-      "transform-flow-strip-types"
+      "@babel/plugin-transform-flow-strip-types"
     ]
   },
   "license": "ISC",
@@ -34,25 +34,26 @@
   },
   "homepage": "https://github.com/binary-com/binary-indicators#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.17.0",
-    "babel-eslint": "^7.0.0",
-    "babel-plugin-transform-flow-strip-types": "^6.14.0",
-    "babel-preset-latest": "^6.16.0",
-    "coveralls": "^3.0.2",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-flowtype": "^2.20.0",
-    "eslint-plugin-import": "^2.0.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.0",
-    "gulp": "^4.0.0",
-    "gulp-babel": "^6.1.2",
-    "jest-cli": "^23.6.0"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-eslint": "^10.1.0",
+    "coveralls": "^3.0.11",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "jest-cli": "^25.3.0"
   },
   "dependencies": {
     "binary-utils": "^4.19.1",
-    "mem": "4.0.0"
+    "mem": "6.1.0"
   },
   "resolutions": {
     "acorn": "5.7.4"
