@@ -6,7 +6,6 @@
   "scripts": {
     "build": "gulp",
     "prepublish": "npm run build",
-    "preinstall": "npx npm-force-resolutions",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
@@ -49,8 +48,7 @@
     "eslint-plugin-react": "^6.4.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^6.1.2",
-    "jest-cli": "^23.6.0",
-    "npm-force-resolutions": "0.0.3"
+    "jest-cli": "^23.6.0"
   },
   "dependencies": {
     "binary-utils": "^4.19.1",
