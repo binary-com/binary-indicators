@@ -1,12 +1,12 @@
 {
   "name": "@binary-com/binary-indicators",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Binary.com Indicators",
   "main": "index.js",
   "scripts": {
     "build": "gulp",
     "prepublish": "npm run build",
-    "preinstall": "npm-force-resolutions",
+    "preinstall": "npx npm-force-resolutions",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
