@@ -18,9 +18,7 @@ describe('simpleMovingAverage', () => {
     });
 
     it('throws if periods is longer than data length', () => {
-        expect(() =>
-            simpleMovingAverage([1, 2, 3], { periods: 5 }),
-        ).toThrow();
+        expect(() => simpleMovingAverage([1, 2, 3], { periods: 5 })).toThrow();
     });
 
     it('part of whole', () => {
